@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2026/09/24 17:32:48.989,=D:\Torrent\Projetos\Unit1.pas</Transaction>
+    <Transaction>2026/09/24 17:34:43.067,D:\Torrent\Projetos\GestaoOS\fMain.pas=D:\Torrent\Projetos\Unit1.pas</Transaction>
+    <Transaction>2026/09/24 17:34:43.067,D:\Torrent\Projetos\GestaoOS\fMain.dfm=D:\Torrent\Projetos\Unit1.dfm</Transaction>
+    <Transaction>2026/09/24 17:35:00.118,D:\Torrent\Projetos\GestaoOS\GestaoOS.dproj=D:\Torrent\Projetos\Project1.dproj</Transaction>
+    <Transaction>2026/09/24 17:53:33.515,=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/24 17:54:02.508,D:\Torrent\Projetos\GestaoOS\dmConexao.pas=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/24 17:54:02.508,D:\Torrent\Projetos\GestaoOS\dmConexao.dfm=D:\Torrent\Projetos\GestaoOS\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
