@@ -49,6 +49,8 @@ procedure TdtmConexao.CarregarConfiguracaoINI;
 var
 LIniFile: TIniFile;
 LCaminhoIni: string;
+LCaminhoBanco: string;
+LVendorLib: string;
 begin
   LCaminhoIni := ExtractFilePath(ParamStr(0)) + 'conexao.ini';
 
@@ -60,21 +62,32 @@ begin
 
     LIniFile := TIniFile.Create(LCaminhoIni);
     try
+      LCaminhoBanco := LIniFile.ReadString('CONEXAO', 'Database', 'GESTAO_OS.FDB');
+
+      if ExtractFileDrive(LCaminhoBanco) = '' then
+      LCaminhoBanco := ExtractFilePath(ParamStr(0)) + LCaminhoBanco;
+
       FDConnection.Params.Clear;
       FDConnection.Params.DriverID := LIniFile.ReadString('CONEXAO', 'DriverID', 'FB');
-      FDConnection.Params.Database := LIniFile.ReadString('CONEXAO', 'Database', '');
+      FDConnection.Params.Database := LCaminhoBanco;
       FDConnection.Params.UserName := LIniFile.ReadString('CONEXAO', 'User', 'SYSDBA');
       FDConnection.Params.Password := LIniFile.ReadString('CONEXAO', 'Password', 'masterkey');
       FDConnection.Params.Add('Server=' + LIniFile.ReadString('CONEXAO', 'Server', 'localhost'));
       FDConnection.Params.Add('Port=' + LIniFile.ReadString('CONEXAO', 'Port', '3050'));
 
       if LIniFile.ValueExists('CONEXAO', 'VendorLib') then
-        FDPhysFBDriverLink.VendorLib := LIniFile.ReadString('CONEXAO', 'VendorLib', '');
+      begin
+        LVendorLib := LIniFile.ReadString('CONEXAO', 'VendorLib', 'fbclient.dll');
+        if ExtractFileDrive(LVendorLib) = '' then
+          LVendorLib := ExtractFilePath(ParamStr(0)) + LVendorLib;
+
+        FDPhysFBDriverLink.VendorLib := LVendorLib;
+      end;
 
       FDConnection.LoginPrompt := False;
-    finally
-      LIniFile.Free;
-    end;
+   finally
+    LIniFile.Free;
+   end;
 end;
 
 procedure TdtmConexao.Conectar;
