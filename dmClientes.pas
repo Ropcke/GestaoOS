@@ -18,8 +18,8 @@ type
   public
     { Public declarations }
     procedure ListarClientes(const AFiltroNome: string = '');
-    procedure InserirCliente(const ANome, ACpfCnpj, ATelefone, AEmail, AEndereco: string);
-    procedure AlterarCliente(const AId: Integer; const ANome, ACpfCnpj, ATelefone, AEmail, AEndereco: string);
+    procedure InserirCliente(const ANome, ADocumento, ATelefone, AEmail: string);
+    procedure AlterarCliente(const AId: Integer; const ANome, ADocumento, ATelefone, AEmail: string);
     procedure ExcluirCliente(const AId: Integer);
   end;
 
@@ -45,12 +45,12 @@ procedure TdtmClientes.ListarClientes(const AFiltroNome: string);
 begin
   qryClientes.Close;
   qryClientes.SQL.Clear;
-  qryClientes.SQL.Add('SELECT ID_CLIENTE, NOME, CPF_CNPJ, TELEFONE, EMAIL, ENDERECO, DATA_CADASTRO');
-  qryClientes.SQL.Add('FROM CLIENTES');
+  qryClientes.SQL.Add('SELECT ID, NOME, DOCUMENTO, TELEFONE, EMAIL, DATA_CADASTRO');
+  qryClientes.SQL.Add('FROM CLIENTE');
 
   if not AFiltroNome.Trim.IsEmpty then
   begin
-    qryClientes.SQL.Add('WHERE (UPPER(NOME) LIKE UPPER(:FILTRO)) OR (CPF_CNPJ LIKE :FILTRO)');
+    qryClientes.SQL.Add('WHERE (UPPER(NOME) LIKE UPPER(:FILTRO)) OR (DOCUMENTO LIKE :FILTRO)');
     qryClientes.ParamByName('FILTRO').AsString := '%' + AFiltroNome.Trim + '%';
   end;
 
@@ -58,44 +58,41 @@ begin
   qryClientes.Open;
 end;
 
-procedure TdtmClientes.InserirCliente(const ANome, ACpfCnpj, ATelefone, AEmail, AEndereco: string);
+procedure TdtmClientes.InserirCliente(const ANome, ADocumento, ATelefone, AEmail: string);
 begin
-  TClienteServico.ValidarCliente(ANome, ACpfCnpj, AEmail);
+  TClienteServico.ValidarCliente(ANome, ADocumento, AEmail);
 
   qryManutencao.Close;
   qryManutencao.SQL.Clear;
-  qryManutencao.SQL.Add('INSERT INTO CLIENTES (NOME, CPF_CNPJ, TELEFONE, EMAIL, ENDERECO, DATA_CADASTRO)');
-  qryManutencao.SQL.Add('VALUES (:NOME, :CPF_CNPJ, :TELEFONE, :EMAIL, :ENDERECO, CURRENT_TIMESTAMP)');
+  qryManutencao.SQL.Add('INSERT INTO CLIENTE (NOME, DOCUMENTO, TELEFONE, EMAIL, DATA_CADASTRO)');
+  qryManutencao.SQL.Add('VALUES (:NOME, :DOCUMENTO, :TELEFONE, :EMAIL, CURRENT_TIMESTAMP)');
 
   qryManutencao.ParamByName('NOME').AsString      := ANome.Trim;
-  qryManutencao.ParamByName('CPF_CNPJ').AsString  := TClienteServico.FormatarDocumento(ACpfCnpj);
+  qryManutencao.ParamByName('DOCUMENTO').AsString  := TClienteServico.FormatarDocumento(ADocumento);
   qryManutencao.ParamByName('TELEFONE').AsString  := ATelefone.Trim;
   qryManutencao.ParamByName('EMAIL').AsString     := AEmail.Trim;
-  qryManutencao.ParamByName('ENDERECO').AsString  := AEndereco.Trim;
 
   qryManutencao.ExecSQL;
 end;
 
-procedure TdtmClientes.AlterarCliente(const AId: Integer; const ANome, ACpfCnpj, ATelefone, AEmail, AEndereco: string);
+procedure TdtmClientes.AlterarCliente(const AId: Integer; const ANome, ADocumento, ATelefone, AEmail: string);
 begin
-  TClienteServico.ValidarCliente(ANome, ACpfCnpj, AEmail);
+  TClienteServico.ValidarCliente(ANome, ADocumento, AEmail);
 
   qryManutencao.Close;
   qryManutencao.SQL.Clear;
-  qryManutencao.SQL.Add('UPDATE CLIENTES SET');
+  qryManutencao.SQL.Add('UPDATE CLIENTE SET');
   qryManutencao.SQL.Add('  NOME = :NOME,');
-  qryManutencao.SQL.Add('  CPF_CNPJ = :CPF_CNPJ,');
+  qryManutencao.SQL.Add('  DOCUMENTO = :DOCUMENTO,');
   qryManutencao.SQL.Add('  TELEFONE = :TELEFONE,');
-  qryManutencao.SQL.Add('  EMAIL = :EMAIL,');
-  qryManutencao.SQL.Add('  ENDERECO = :ENDERECO');
-  qryManutencao.SQL.Add('WHERE ID_CLIENTE = :ID');
+  qryManutencao.SQL.Add('  EMAIL = :EMAIL');
+  qryManutencao.SQL.Add('WHERE ID = :ID');
 
   qryManutencao.ParamByName('ID').AsInteger       := AId;
   qryManutencao.ParamByName('NOME').AsString      := ANome.Trim;
-  qryManutencao.ParamByName('CPF_CNPJ').AsString  := TClienteServico.FormatarDocumento(ACpfCnpj);
+  qryManutencao.ParamByName('DOCUMENTO').AsString  := TClienteServico.FormatarDocumento(ADocumento);
   qryManutencao.ParamByName('TELEFONE').AsString  := ATelefone.Trim;
   qryManutencao.ParamByName('EMAIL').AsString     := AEmail.Trim;
-  qryManutencao.ParamByName('ENDERECO').AsString  := AEndereco.Trim;
 
   qryManutencao.ExecSQL;
 end;
@@ -104,7 +101,7 @@ procedure TdtmClientes.ExcluirCliente(const AId: Integer);
 begin
   qryManutencao.Close;
   qryManutencao.SQL.Clear;
-  qryManutencao.SQL.Add('DELETE FROM CLIENTES WHERE ID_CLIENTE = :ID');
+  qryManutencao.SQL.Add('DELETE FROM CLIENTE WHERE ID = :ID');
   qryManutencao.ParamByName('ID').AsInteger := AId;
 
   try
