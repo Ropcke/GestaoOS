@@ -8,5 +8,13 @@
     <Transaction>2026/09/24 17:53:33.000.515,=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
     <Transaction>2026/09/24 17:54:02.000.508,D:\Torrent\Projetos\GestaoOS\Unit1.pas=D:\Torrent\Projetos\GestaoOS\dmConexao.pas</Transaction>
     <Transaction>2026/09/24 17:54:02.000.508,D:\Torrent\Projetos\GestaoOS\Unit1.dfm=D:\Torrent\Projetos\GestaoOS\dmConexao.dfm</Transaction>
+    <Transaction>2026/09/29 18:09:14.000.182,=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/29 18:10:15.000.310,D:\Torrent\Projetos\GestaoOS\Unit1.pas=D:\Torrent\Projetos\GestaoOS\dmClientes.pas</Transaction>
+    <Transaction>2026/09/29 18:10:15.000.310,D:\Torrent\Projetos\GestaoOS\Unit1.dfm=D:\Torrent\Projetos\GestaoOS\dmClientes.dfm</Transaction>
+    <Transaction>2026/09/29 18:23:02.000.889,=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/29 18:23:58.000.320,D:\Torrent\Projetos\GestaoOS\Unit1.pas=D:\Torrent\Projetos\GestaoOS\uClienteServico.pas</Transaction>
+    <Transaction>2026/09/30 18:26:24.473,=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/30 18:27:06.591,D:\Torrent\Projetos\GestaoOS\ufrmClientes.pas=D:\Torrent\Projetos\GestaoOS\Unit1.pas</Transaction>
+    <Transaction>2026/09/30 18:27:06.591,D:\Torrent\Projetos\GestaoOS\ufrmClientes.dfm=D:\Torrent\Projetos\GestaoOS\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
