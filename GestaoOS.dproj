@@ -124,7 +124,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="fMain.pas">
-            <Form>frmClientes</Form>
+            <Form>frmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="dmConexao.pas">
@@ -139,7 +139,17 @@
         </DCCReference>
         <DCCReference Include="uClienteServico.pas"/>
         <DCCReference Include="ufrmClientes.pas">
-            <Form>Form1</Form>
+            <Form>frmClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uOrdemServico.pas"/>
+        <DCCReference Include="dmOrdens.pas">
+            <Form>dtmOrdens</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="ufrmOrdens.pas">
+            <Form>frmOrdens</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

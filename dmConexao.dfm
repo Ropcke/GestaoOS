@@ -4,6 +4,12 @@ object dtmConexao: TdtmConexao
   Height = 480
   Width = 640
   object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=D:\Torrent\Projetos\GestaoOS\Win32\Debug\GESTAO_OS.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
     Left = 40
     Top = 24
   end

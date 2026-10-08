@@ -51,6 +51,7 @@ LIniFile: TIniFile;
 LCaminhoIni: string;
 LCaminhoBanco: string;
 LVendorLib: string;
+LCharSet: string;
 begin
   LCaminhoIni := ExtractFilePath(ParamStr(0)) + 'conexao.ini';
 
@@ -67,6 +68,8 @@ begin
       if ExtractFileDrive(LCaminhoBanco) = '' then
       LCaminhoBanco := ExtractFilePath(ParamStr(0)) + LCaminhoBanco;
 
+      LCharSet := LIniFile.ReadString('CONEXAO', 'CharacterSet', 'UTF8');
+
       FDConnection.Params.Clear;
       FDConnection.Params.DriverID := LIniFile.ReadString('CONEXAO', 'DriverID', 'FB');
       FDConnection.Params.Database := LCaminhoBanco;
@@ -74,6 +77,7 @@ begin
       FDConnection.Params.Password := LIniFile.ReadString('CONEXAO', 'Password', 'masterkey');
       FDConnection.Params.Add('Server=' + LIniFile.ReadString('CONEXAO', 'Server', 'localhost'));
       FDConnection.Params.Add('Port=' + LIniFile.ReadString('CONEXAO', 'Port', '3050'));
+      FDConnection.Params.Add('CharacterSet=' + LCharSet);
 
       if LIniFile.ValueExists('CONEXAO', 'VendorLib') then
       begin
