@@ -173,7 +173,6 @@ object frmClientes: TfrmClientes
         Width = 222
         Height = 23
         TabOrder = 3
-        TextHint = '(51)9000-00000'
       end
       object edtEmail: TEdit
         Left = 11
@@ -194,7 +193,7 @@ object frmClientes: TfrmClientes
           Top = 8
           Width = 75
           Height = 25
-          Caption = 'Salvar (F5)'
+          Caption = 'Salvar'
           TabOrder = 0
           OnClick = btnSalvarClick
         end
