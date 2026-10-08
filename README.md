@@ -38,12 +38,15 @@ O sistema utiliza um arquivo de configuração de banco dinâmico para facilitar
 
 ```ini
 [CONEXAO]
-DriverID=FB
-Database=C:\Caminho\Do\Banco\GESTAO_OS.FDB
-User_Name=SYSDBA
-Password=masterkey
+Database=GESTAO_OS.FDB
 Server=localhost
 Port=3050
+User=SYSDBA
+Password=masterkey
+DriverID=FB
+VendorLib=fbclient.dll
+CharacterSet=UTF8
+
 ```
 
 ### 3. Compilação e Execução
