@@ -64,7 +64,7 @@ object frmOrdens: TfrmOrdens
           Top = 16
           Width = 75
           Height = 25
-          Caption = 'btnImprimir'
+          Caption = 'Imprimir'
           TabOrder = 3
           OnClick = btnImprimirClick
         end
@@ -155,7 +155,6 @@ object frmOrdens: TfrmOrdens
             Width = 145
             Height = 23
             TabOrder = 1
-            Text = 'cbFiltroStatus'
             Items.Strings = (
               'Todos'
               'Aberta'
