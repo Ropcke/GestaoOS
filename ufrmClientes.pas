@@ -144,7 +144,6 @@ begin
   try
     if LId = 0 then
     begin
-      // Inserção
       dtmClientes.InserirCliente(
         edtNome.Text,
         edtDocumento.Text,
@@ -155,7 +154,6 @@ begin
     end
     else
     begin
-      // Alteração
       dtmClientes.AlterarCliente(
         LId,
         edtNome.Text,
@@ -165,8 +163,6 @@ begin
       );
       ShowMessage('Dados do cliente atualizados com sucesso!');
     end;
-
-    // Atualiza a grid e retorna para a aba de consulta
     dtmClientes.ListarClientes(edtPesquisa.Text);
     AlternarAba(True);
 
